@@ -1,1 +1,0 @@
-git commit -m "initial commit. created basic homepage with links to registration page. registration page submits username and password to a local postgresql database on my computer"
