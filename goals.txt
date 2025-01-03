@@ -1,1 +1,3 @@
-fix the sql error
+remove the nested "live-chatroom" folder in frontend
+
+put all the node_modules and dist in .gitignore
