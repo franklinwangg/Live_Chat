@@ -1,3 +1,1 @@
-remove the nested "live-chatroom" folder in frontend
-
-put all the node_modules and dist in .gitignore
+what happens when user logs in?

@@ -6,26 +6,44 @@ function Homepage() {
         <div>
 
             <div id="logout-button-div">
-                <button id="logout-button">Logout</button>
+                <div>
+                    <button id="logout-button">Logout</button>
 
-                <Link
-                    id="texting-page-link"
-                    to='/textingPage'
-                >
-                    Texting Page Link
-                </Link>
-                <Link
-                    id="register-page-link"
-                    to='/register'
-                >
-                    Register Link
-                </Link>
-                <Link
-                    id="find-friends-page-link"
-                    to='/findFriends'
-                >
-                    Find Friends Link
-                </Link>
+                </div>
+
+                <div>
+                    <Link
+                        id="texting-page-link"
+                        to='/textingPage'
+                    >
+                        Texting Page Link
+                    </Link>
+                </div>
+
+                <div>
+                    <Link
+                        id="register-page-link"
+                        to='/register'
+                    >
+                        Register Link
+                    </Link>
+                </div>
+
+                <div>
+                    <Link
+                        id="find-friends-page-link"
+                        to='/findFriends'
+                    >
+                        Find Friends Link
+                    </Link>
+                </div>
+
+                <div>
+                    <Link id="login-page-link" to="/login">
+                        Login
+                    </Link>
+                </div>
+
             </div>
             <div>
             </div>

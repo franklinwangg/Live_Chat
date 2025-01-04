@@ -8,44 +8,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerUser = void 0;
-const pg_1 = require("pg");
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+exports.login = exports.registerUser = void 0;
+const server_1 = require("../server");
+// dotenv.config();
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // extract the user's username and password from the request
-    // put it into the database
-    console.log("BODY : ", req.body);
     const username = req.body.username;
     const password = req.body.password;
-    const client = new pg_1.Client({
-        host: process.env.PSQL_HOST,
-        port: parseInt(process.env.PSQL_PORT || "5432"),
-        user: process.env.PSQL_USER,
-        password: process.env.PSQL_PASSWORD,
-        database: process.env.PSQL_DATABASE,
-    });
-    yield client.connect();
+    const client = yield server_1.userDatabasePool.connect();
     try {
-        // Insert the username and password into the 'users' table
-        const query = 'INSERT INTO users (username, password) VALUES ($1, $2)';
-        const values = [username, password];
-        yield client.query(query, values); // Execute the query
-        // Respond with a success message
-        res.status(201).json({ message: "User registered successfully!" });
+        yield client.query("INSERT INTO users(username, password) VALUES ($1, $2)", [username, password]);
+        res.json(200);
     }
     catch (error) {
-        console.error("Error registering user:", error);
-        res.status(500).json({ message: "An error occurred while registering the user." });
+        console.log("error registering user.");
     }
     finally {
-        // Close the database connection
-        yield client.end();
+        client.release();
     }
 });
 exports.registerUser = registerUser;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password } = req.body;
+    const client = yield server_1.userDatabasePool.connect();
+    const result = yield client.query("SELECT * FROM users WHERE username = $1 AND password = $2", [username, password]);
+    if (result.rows.length === 0) {
+        res.json(401);
+    }
+    else {
+        res.json(200);
+    }
+});
+exports.login = login;
 // export default registerUser;

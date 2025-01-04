@@ -3,6 +3,7 @@ import Homepage from './components/homepage/Homepage';
 import Register from './components/register/Register';
 import TextingPage from './components/texting-page/TextingPage';
 import FindFriends from "./components/find-friends/FindFriends";
+import Login from './components/login/Login';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/textingPage" element={<TextingPage />} />
         <Route path="/findFriends" element={<FindFriends />} />
+        <Route path="/login" element={<Login />} />
 
       </Routes>
     </Router>

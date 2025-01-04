@@ -27,4 +27,5 @@ const express_1 = require("express");
 const UserController = __importStar(require("../controllers/userControllers"));
 const router = (0, express_1.Router)();
 router.post("/register", UserController.registerUser);
+router.post("/login", UserController.login);
 exports.default = router;

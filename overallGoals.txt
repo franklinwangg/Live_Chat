@@ -1,3 +1,5 @@
+let a user log in first
+
 create backend endpoints to login and createAccount
 
 have a little screen fetch all of your friends and list them out
